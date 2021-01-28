@@ -7,5 +7,5 @@ export interface PayloadResponse {
 }
 
 export interface Controller {
-  handle(payload: PayloadReceive): PayloadResponse;
+  handle(payload: PayloadReceive): Promise<PayloadResponse>;
 }

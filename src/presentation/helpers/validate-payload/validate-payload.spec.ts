@@ -1,11 +1,11 @@
-import { ValidatePayloadUtil } from "./validate-payload";
+import { ValidatePayloadHelper } from "./validate-payload";
 
 interface SutTypes {
-  sut: ValidatePayloadUtil;
+  sut: ValidatePayloadHelper;
 }
 
 const makeSut = (): SutTypes => {
-  const sut = new ValidatePayloadUtil();
+  const sut = new ValidatePayloadHelper();
 
   return {
     sut,

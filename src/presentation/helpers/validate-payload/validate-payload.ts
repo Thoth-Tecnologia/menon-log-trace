@@ -1,6 +1,6 @@
 import { ValidatePayload, PayloadReceive } from "./validate-payload-protocols";
 
-export class ValidatePayloadUtil implements ValidatePayload {
+export class ValidatePayloadHelper implements ValidatePayload {
   private requiredFields: Array<string>;
   private payload: Array<string>;
 

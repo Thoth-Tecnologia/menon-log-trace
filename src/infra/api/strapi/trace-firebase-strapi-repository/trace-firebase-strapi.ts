@@ -5,11 +5,10 @@ import nodeFetch from "node-fetch";
 
 export class TraceFirebaseStrapiRepository implements TraceFirebaseStrapiRepo {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  readonly fetch: any;
+  readonly fetch: any = nodeFetch;
   private readonly apiHelper: typeof ApiHelper;
 
-  constructor(fetch: typeof nodeFetch, apiHelper: typeof ApiHelper) {
-    this.fetch = fetch;
+  constructor(apiHelper: typeof ApiHelper) {
     this.apiHelper = apiHelper;
   }
 
@@ -20,7 +19,7 @@ export class TraceFirebaseStrapiRepository implements TraceFirebaseStrapiRepo {
         body: log,
       });
 
-      return request.ok();
+      return request.ok;
     } catch {
       return false;
     }

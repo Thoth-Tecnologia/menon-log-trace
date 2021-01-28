@@ -18,7 +18,7 @@ export class TraceFirebaseController implements Controller {
     this.setHandlePayloadRequiredFields();
   }
 
-  handle(payload: PayloadReceive): PayloadResponse {
+  async handle(payload: PayloadReceive): Promise<PayloadResponse> {
     this.validatePayload.setPayload(payload);
     if (!this.validatePayload.containsAllRequiredFields()) {
       const missingFields = this.validatePayload.exibeMissingFields();
@@ -27,7 +27,7 @@ export class TraceFirebaseController implements Controller {
       return badRequest(`Property(s) ${missingFieldsInPhrase} is not provided`);
     }
 
-    const responseTrace = this.traceLog.trace(payload);
+    const responseTrace = await this.traceLog.trace(payload);
 
     return responseTrace ? ok() : badRequest("Log is not traced");
   }

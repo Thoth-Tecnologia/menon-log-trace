@@ -1,5 +1,5 @@
 import { TraceFirebaseController } from "./trace-firebase";
-import { ValidatePayloadUtil } from "../../helpers/validate-payload";
+import { ValidatePayloadHelper } from "../../helpers/validate-payload";
 import { TraceLog, LogReceive } from "./trace-firebase-protocols";
 
 const makeFakeRequest = (): LogReceive => ({
@@ -29,8 +29,8 @@ interface SutTypes {
 
 const makeSut = (): SutTypes => {
   const traceLogStub = makeTraceLogStub();
-  const validatePayloadUtil = new ValidatePayloadUtil();
-  const sut = new TraceFirebaseController(validatePayloadUtil, traceLogStub);
+  const validatePayloadHelper = new ValidatePayloadHelper();
+  const sut = new TraceFirebaseController(validatePayloadHelper, traceLogStub);
 
   return {
     sut,
@@ -39,7 +39,7 @@ const makeSut = (): SutTypes => {
 };
 
 describe("TraceFirebase Controller", () => {
-  it("should returns resultCode 400 if operation property is not provided", () => {
+  it("should returns resultCode 400 if operation property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
@@ -47,13 +47,13 @@ describe("TraceFirebase Controller", () => {
       payload: {},
     };
 
-    expect(sut.handle(testablePayload)).toEqual({
+    expect(await sut.handle(testablePayload)).toEqual({
       resultCode: 400,
       message: "Property(s) operation is not provided",
     });
   });
 
-  it("should returns resultCode 400 if irErr property is not provided", () => {
+  it("should returns resultCode 400 if irErr property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
@@ -61,13 +61,13 @@ describe("TraceFirebase Controller", () => {
       payload: {},
     };
 
-    expect(sut.handle(testablePayload)).toEqual({
+    expect(await sut.handle(testablePayload)).toEqual({
       resultCode: 400,
       message: "Property(s) isErr is not provided",
     });
   });
 
-  it("should returns resultCode 400 if payload property is not provided", () => {
+  it("should returns resultCode 400 if payload property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
@@ -75,20 +75,20 @@ describe("TraceFirebase Controller", () => {
       isErr: false,
     };
 
-    expect(sut.handle(testablePayload)).toEqual({
+    expect(await sut.handle(testablePayload)).toEqual({
       resultCode: 400,
       message: "Property(s) payload is not provided",
     });
   });
 
-  it("should returns resultCode 400 if payload and isErr property is not provided", () => {
+  it("should returns resultCode 400 if payload and isErr property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
       operation: "any_operation",
     };
 
-    expect(sut.handle(testablePayload)).toEqual({
+    expect(await sut.handle(testablePayload)).toEqual({
       resultCode: 400,
       message: "Property(s) isErr, payload is not provided",
     });

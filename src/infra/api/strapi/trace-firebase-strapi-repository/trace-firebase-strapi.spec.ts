@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TraceFirebaseStrapiRepository } from "./trace-firebase-strapi";
-import nodeFetch from "node-fetch";
 
 const makeFakeApiHelper = (): any => ({
   baseUrl: "any.base.url",
@@ -20,9 +19,8 @@ interface SutTypes {
 }
 
 const makeSut = (): SutTypes => {
-  const fakeNodeFetch = nodeFetch;
   const fakeApiHelper = makeFakeApiHelper();
-  const sut = new TraceFirebaseStrapiRepository(fakeNodeFetch, fakeApiHelper);
+  const sut = new TraceFirebaseStrapiRepository(fakeApiHelper);
 
   return {
     sut,
