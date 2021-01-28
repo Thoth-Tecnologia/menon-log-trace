@@ -14,11 +14,15 @@ export class TraceFirebaseStrapiRepository implements TraceFirebaseStrapiRepo {
   }
 
   async saveLog(log: LogReceive): Promise<boolean> {
-    const request = await this.fetch(this.apiHelper.baseUrl, {
-      method: "POST",
-      body: log,
-    });
+    try {
+      const request = await this.fetch(this.apiHelper.baseUrl, {
+        method: "POST",
+        body: log,
+      });
 
-    return request.ok();
+      return request.ok();
+    } catch {
+      return false;
+    }
   }
 }

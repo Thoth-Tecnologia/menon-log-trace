@@ -17,8 +17,6 @@ const makeFakeEntryLog = (): any => ({
 
 interface SutTypes {
   sut: TraceFirebaseStrapiRepository;
-  fakeNodeFetch: any;
-  fakeApiHelper: any;
 }
 
 const makeSut = (): SutTypes => {
@@ -28,8 +26,6 @@ const makeSut = (): SutTypes => {
 
   return {
     sut,
-    fakeNodeFetch,
-    fakeApiHelper,
   };
 };
 
@@ -55,5 +51,18 @@ describe("TraceFirebaseStrapi Repository", () => {
       method: "POST",
       body: makeFakeEntryLog(),
     });
+  });
+
+  test("should be returns false if fetch dependecy Throws", async () => {
+    const { sut } = makeSut();
+
+    const spyFetch = jest.spyOn(sut, "fetch");
+
+    spyFetch.mockImplementation(
+      () => new Promise((resolve, reject) => reject(new Error()))
+    );
+    const testableResponse = await sut.saveLog(makeFakeEntryLog());
+
+    expect(testableResponse).toEqual(false);
   });
 });
