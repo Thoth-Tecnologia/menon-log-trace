@@ -1,5 +1,5 @@
 import { PayloadReceive } from "../presentation/controllers/protocols";
-import menonTraceLog from "./index";
+import menonLogTrace from "./index";
 
 jest.setTimeout(30000);
 
@@ -14,10 +14,10 @@ const makeDefaultLog = (): PayloadReceive => ({
 
 describe("Main Layer Integration", () => {
   test("should be set correct url and request fake api", async () => {
-    menonTraceLog.setBaseUrl("https://jsonplaceholder.typicode.com/posts");
+    menonLogTrace.setBaseUrl("https://jsonplaceholder.typicode.com/posts");
 
     const defaultLog = makeDefaultLog();
-    const testableTraceLog = await menonTraceLog.traceLogFirebase(defaultLog);
+    const testableTraceLog = await menonLogTrace.traceLogFirebase(defaultLog);
 
     expect(testableTraceLog).toEqual({
       resultCode: 200,
