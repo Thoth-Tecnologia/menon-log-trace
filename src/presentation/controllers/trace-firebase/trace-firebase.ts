@@ -4,6 +4,7 @@ import {
   PayloadResponse,
   ValidatePayload,
 } from "./trace-firebase-protocols";
+import { badRequest, ok } from "../../helpers/responses";
 
 export class TraceFirebaseController implements Controller {
   private readonly validatePayload: ValidatePayload;
@@ -13,10 +14,6 @@ export class TraceFirebaseController implements Controller {
     this.setHandlePayloadRequiredFields();
   }
 
-  private setHandlePayloadRequiredFields(): void {
-    this.validatePayload.setRequiredFields(["operation", "isErr", "payload"]);
-  }
-
   handle(payload: PayloadReceive): PayloadResponse {
     this.validatePayload.setPayload(payload);
     if (!this.validatePayload.containsAllRequiredFields()) {
@@ -24,15 +21,13 @@ export class TraceFirebaseController implements Controller {
         .exibeMissingFields()
         .join(", ");
 
-      return {
-        resultCode: 400,
-        message: `Property(s) ${missingFields} is not provided`,
-      };
+      return badRequest(`Property(s) ${missingFields} is not provided`);
     }
 
-    return {
-      resultCode: 200,
-      message: "",
-    };
+    return ok();
+  }
+
+  private setHandlePayloadRequiredFields(): void {
+    this.validatePayload.setRequiredFields(["operation", "isErr", "payload"]);
   }
 }

@@ -1,5 +1,5 @@
 import { TraceFirebaseController } from "./trace-firebase";
-import { ValidatePayloadUtil } from "./../../utils/validate-payload";
+import { ValidatePayloadUtil } from "../../helpers/validate-payload";
 
 interface SutTypes {
   sut: TraceFirebaseController;
