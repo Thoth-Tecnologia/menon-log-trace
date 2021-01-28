@@ -1,5 +1,5 @@
 {
-  "name": "menon-observability",
+  "name": "menon-trace-log",
   "version": "1.0.0",
   "main": "index.js",
   "author": "pedromoraisf <pedro.morais1997@gmail.com>",
