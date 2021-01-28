@@ -1,5 +1,5 @@
-import { LogReceive, Log } from './trace-log-protocols'
+import { LogReceive, Log } from "./trace-log-protocols";
 
 export interface TraceLog {
-  trace(log: LogReceive): Log
+  trace(log: LogReceive): Promise<Log>;
 }
