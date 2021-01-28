@@ -17,12 +17,13 @@ const makeSut = (): SutTypes => {
 describe("TraceFirebase Controller", () => {
   it("should returns resultCode 400 if operation property is not provided", () => {
     const { sut } = makeSut();
-    expect(
-      sut.handle({
-        isErr: false,
-        payload: {},
-      })
-    ).toEqual({
+
+    const testablePayload = {
+      isErr: false,
+      payload: {},
+    };
+
+    expect(sut.handle(testablePayload)).toEqual({
       resultCode: 400,
       message: "Property(s) operation is not provided",
     });
@@ -30,12 +31,13 @@ describe("TraceFirebase Controller", () => {
 
   it("should returns resultCode 400 if irErr property is not provided", () => {
     const { sut } = makeSut();
-    expect(
-      sut.handle({
-        operation: "any_operation",
-        payload: {},
-      })
-    ).toEqual({
+
+    const testablePayload = {
+      operation: "any_operation",
+      payload: {},
+    };
+
+    expect(sut.handle(testablePayload)).toEqual({
       resultCode: 400,
       message: "Property(s) isErr is not provided",
     });
@@ -43,12 +45,13 @@ describe("TraceFirebase Controller", () => {
 
   it("should returns resultCode 400 if payload property is not provided", () => {
     const { sut } = makeSut();
-    expect(
-      sut.handle({
-        operation: "any_operation",
-        isErr: false,
-      })
-    ).toEqual({
+
+    const testablePayload = {
+      operation: "any_operation",
+      isErr: false,
+    };
+
+    expect(sut.handle(testablePayload)).toEqual({
       resultCode: 400,
       message: "Property(s) payload is not provided",
     });
