@@ -2,18 +2,18 @@ import { TraceFirebaseController } from "./trace-firebase";
 import { ValidatePayloadUtil } from "../../helpers/validate-payload";
 import { TraceLog, Log, LogReceive } from "./trace-firebase-protocols";
 
+const makeFakeRequest = (): LogReceive => ({
+  operation: "any_operation",
+  isErr: false,
+  payload: {
+    title: "any_title",
+    body: "any_body",
+  },
+});
+
 const makeTraceLogStub = (): TraceLog => {
   class TraceLogStub implements TraceLog {
-    trace(
-      log: LogReceive = {
-        operation: "any_operation",
-        isErr: false,
-        payload: {
-          title: "any_title",
-          body: "any_body",
-        },
-      }
-    ): Log {
+    trace(log: LogReceive = makeFakeRequest()): Log {
       return {
         id: 1,
         operation: log.operation,
@@ -91,22 +91,9 @@ describe("TraceFirebase Controller", () => {
 
     const traceSpy = jest.spyOn(traceLogStub, "trace");
 
-    sut.handle({
-      operation: "any_operation",
-      isErr: false,
-      payload: {
-        title: "any_title",
-        body: "any_body",
-      },
-    });
+    const fakeRequest = makeFakeRequest();
+    sut.handle(fakeRequest);
 
-    expect(traceSpy).toHaveBeenCalledWith({
-      operation: "any_operation",
-      isErr: false,
-      payload: {
-        title: "any_title",
-        body: "any_body",
-      },
-    });
+    expect(traceSpy).toHaveBeenCalledWith(fakeRequest);
   });
 });
