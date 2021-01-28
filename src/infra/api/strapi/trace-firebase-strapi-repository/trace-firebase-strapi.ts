@@ -1,5 +1,5 @@
 import { TraceFirebaseStrapiRepo } from "../../../../data/usecases/protocols/trace-firebase-strapi-repository";
-import { Log, LogReceive } from "../../../../domain/usecases/trace-log";
+import { LogReceive } from "../../../../domain/usecases/trace-log";
 import ApiHelper from "./../../helper/api-helper";
 import nodeFetch from "node-fetch";
 
