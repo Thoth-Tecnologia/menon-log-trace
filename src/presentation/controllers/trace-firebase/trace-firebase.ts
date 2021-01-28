@@ -10,10 +10,10 @@ export class TraceFirebaseController implements Controller {
 
   constructor(validatePayload: ValidatePayload) {
     this.validatePayload = validatePayload;
-    this.setHandleRequiredFields();
+    this.setHandlePayloadRequiredFields();
   }
 
-  private setHandleRequiredFields(): void {
+  private setHandlePayloadRequiredFields(): void {
     this.validatePayload.setRequiredFields(["operation", "isErr", "payload"]);
   }
 
