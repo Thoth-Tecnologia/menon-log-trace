@@ -1,1 +1,2 @@
-export * from './../protocols/controller'
+export * from "./../protocols/controller";
+export { ValidatePayload } from "../../utils/validate-payload";

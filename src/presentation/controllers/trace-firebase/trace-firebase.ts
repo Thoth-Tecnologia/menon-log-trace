@@ -1,11 +1,32 @@
-import { Controller, PayloadReceive, PayloadResponse } from './trace-firebase-protocols'
+import {
+  Controller,
+  PayloadReceive,
+  PayloadResponse,
+  ValidatePayload,
+} from "./trace-firebase-protocols";
 
 export class TraceFirebaseController implements Controller {
+  private readonly validatePayload: ValidatePayload;
+
+  constructor(validatePayload: ValidatePayload) {
+    this.validatePayload = validatePayload;
+  }
+
   handle(payload: PayloadReceive): PayloadResponse {
-    console.log(payload)
+    const missingRequiredFields = !this.validatePayload
+      .setPayload(payload)
+      .containsAllRequiredFields();
+    if (missingRequiredFields)
+      return {
+        resultCode: 400,
+        message: `Property(s) ${this.validatePayload
+          .exibeMissingFields()
+          .join(", ")} is not provided`,
+      };
+
     return {
       resultCode: 200,
-      message: ''
-    }
+      message: "",
+    };
   }
 }
