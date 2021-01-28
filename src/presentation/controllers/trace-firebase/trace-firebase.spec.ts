@@ -86,6 +86,19 @@ describe("TraceFirebase Controller", () => {
     });
   });
 
+  it("should returns resultCode 400 if payload and isErr property is not provided", () => {
+    const { sut } = makeSut();
+
+    const testablePayload = {
+      operation: "any_operation",
+    };
+
+    expect(sut.handle(testablePayload)).toEqual({
+      resultCode: 400,
+      message: "Property(s) isErr, payload is not provided",
+    });
+  });
+
   it("should call TraceLog with correct values", () => {
     const { sut, traceLogStub } = makeSut();
 
