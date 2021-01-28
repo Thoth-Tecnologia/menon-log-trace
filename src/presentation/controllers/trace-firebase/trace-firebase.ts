@@ -18,16 +18,17 @@ export class TraceFirebaseController implements Controller {
   }
 
   handle(payload: PayloadReceive): PayloadResponse {
-    const missingRequiredFields = !this.validatePayload
-      .setPayload(payload)
-      .containsAllRequiredFields();
-    if (missingRequiredFields)
+    this.validatePayload.setPayload(payload);
+    if (!this.validatePayload.containsAllRequiredFields()) {
+      const missingFields = this.validatePayload
+        .exibeMissingFields()
+        .join(", ");
+
       return {
         resultCode: 400,
-        message: `Property(s) ${this.validatePayload
-          .exibeMissingFields()
-          .join(", ")} is not provided`,
+        message: `Property(s) ${missingFields} is not provided`,
       };
+    }
 
     return {
       resultCode: 200,
