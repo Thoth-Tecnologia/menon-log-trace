@@ -1,5 +1,5 @@
-import { Log, LogReceive } from "../../../domain/usecases/trace-log";
+import { LogReceive } from "../../../domain/usecases/trace-log";
 
-export interface TraceFirebaseStrapiRepository {
-  saveLog(log: LogReceive): Promise<Log>;
+export interface TraceFirebaseStrapiRepo {
+  saveLog(log: LogReceive): Promise<boolean>;
 }

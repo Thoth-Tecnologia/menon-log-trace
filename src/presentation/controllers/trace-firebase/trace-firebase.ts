@@ -27,9 +27,9 @@ export class TraceFirebaseController implements Controller {
       return badRequest(`Property(s) ${missingFieldsInPhrase} is not provided`);
     }
 
-    this.traceLog.trace(payload);
+    const responseTrace = this.traceLog.trace(payload);
 
-    return ok();
+    return responseTrace ? ok() : badRequest("Log is not traced");
   }
 
   private setHandlePayloadRequiredFields(): void {

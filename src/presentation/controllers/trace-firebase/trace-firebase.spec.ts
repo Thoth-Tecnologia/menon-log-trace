@@ -1,6 +1,6 @@
 import { TraceFirebaseController } from "./trace-firebase";
 import { ValidatePayloadUtil } from "../../helpers/validate-payload";
-import { TraceLog, Log, LogReceive } from "./trace-firebase-protocols";
+import { TraceLog, LogReceive } from "./trace-firebase-protocols";
 
 const makeFakeRequest = (): LogReceive => ({
   operation: "any_operation",
@@ -13,14 +13,9 @@ const makeFakeRequest = (): LogReceive => ({
 
 const makeTraceLogStub = (): TraceLog => {
   class TraceLogStub implements TraceLog {
-    trace(log: LogReceive = makeFakeRequest()): Log {
-      return {
-        id: 1,
-        operation: log.operation,
-        isErr: log.isErr,
-        payload: log.payload,
-        createdAt: new Date(),
-      };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async trace(log: LogReceive = makeFakeRequest()): Promise<boolean> {
+      return new Promise((resolve) => resolve(true));
     }
   }
 

@@ -9,3 +9,8 @@ export const badRequest = (message: string): PayloadResponse => ({
   resultCode: 400,
   message,
 });
+
+export const serverError = (): PayloadResponse => ({
+  resultCode: 503,
+  message: "Server error",
+});

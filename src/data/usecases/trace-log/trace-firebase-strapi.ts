@@ -1,12 +1,11 @@
 import {
   TraceLog,
   LogReceive,
-  Log,
-  TraceFirebaseStrapiRepository,
+  TraceFirebaseStrapiRepo,
 } from "./trace-firebase-strapi-protocols";
 
 export class TraceFirebaseStrapi implements TraceLog {
-  private readonly traceFirebaseStrapiRepository: TraceFirebaseStrapiRepository;
+  private readonly TraceFirebaseStrapiRepo: TraceFirebaseStrapiRepo;
   private readonly logDefault = {
     operation: "",
     isErr: true,
@@ -16,15 +15,13 @@ export class TraceFirebaseStrapi implements TraceLog {
     },
   };
 
-  constructor(traceFirebaseStrapiRepository: TraceFirebaseStrapiRepository) {
-    this.traceFirebaseStrapiRepository = traceFirebaseStrapiRepository;
+  constructor(TraceFirebaseStrapiRepo: TraceFirebaseStrapiRepo) {
+    this.TraceFirebaseStrapiRepo = TraceFirebaseStrapiRepo;
   }
 
-  async trace(log: LogReceive = this.logDefault): Promise<Log> {
+  async trace(log: LogReceive = this.logDefault): Promise<boolean> {
     const treatedLog = this.treatLog(log);
-    const savedLog = await this.traceFirebaseStrapiRepository.saveLog(
-      treatedLog
-    );
+    const savedLog = await this.TraceFirebaseStrapiRepo.saveLog(treatedLog);
 
     return savedLog;
   }

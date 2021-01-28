@@ -1,8 +1,7 @@
 import { TraceFirebaseStrapi } from "./trace-firebase-strapi";
 import {
   LogReceive,
-  Log,
-  TraceFirebaseStrapiRepository,
+  TraceFirebaseStrapiRepo,
 } from "./trace-firebase-strapi-protocols";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,22 +14,11 @@ const makeFakeEntryLog = (): any => ({
   },
 });
 
-const makeFakeLog = (): Log => ({
-  id: 1,
-  operation: "any_operation",
-  isErr: false,
-  payload: {
-    title: "any_title",
-    body: "any_body",
-  },
-  createdAt: new Date(),
-});
-
-const makeFakeTraceFirebaseStrapiRepo = (): TraceFirebaseStrapiRepository => {
+const makeFakeTraceFirebaseStrapiRepo = (): TraceFirebaseStrapiRepo => {
   class FakeTraceFirebaseStrapiRepo {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async saveLog(log: LogReceive): Promise<Log> {
-      return new Promise((resolve) => resolve(makeFakeLog()));
+    async saveLog(log: LogReceive): Promise<boolean> {
+      return new Promise((resolve) => resolve(true));
     }
   }
 
@@ -39,7 +27,7 @@ const makeFakeTraceFirebaseStrapiRepo = (): TraceFirebaseStrapiRepository => {
 
 interface SutTypes {
   sut: TraceFirebaseStrapi;
-  fakeTraceFirebaseStrapiRepo: TraceFirebaseStrapiRepository;
+  fakeTraceFirebaseStrapiRepo: TraceFirebaseStrapiRepo;
 }
 
 const makeSut = (): SutTypes => {

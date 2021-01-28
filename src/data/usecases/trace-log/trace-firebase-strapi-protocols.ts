@@ -3,4 +3,4 @@ export {
   LogReceive,
   Log,
 } from "./../../../domain/usecases/trace-log";
-export { TraceFirebaseStrapiRepository } from "./../protocols/trace-firebase-strapi-repository";
+export { TraceFirebaseStrapiRepo } from "./../protocols/trace-firebase-strapi-repository";
