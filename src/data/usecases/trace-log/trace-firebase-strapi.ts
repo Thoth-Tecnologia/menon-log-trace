@@ -31,17 +31,15 @@ export class TraceFirebaseStrapi implements TraceLog {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   treatLog(log: any = this.logDefault): LogReceive {
-    const payloadTitle =
-      typeof log.payload?.title === "string" ? log.payload.title : "";
-    const payloadBody =
-      typeof log.payload?.body === "string" ? log.payload.body : "";
+    const payloadTitleIsString = log.payload?.title === "string";
+    const payloadBodyIsString = log.payload?.body === "string";
 
     return {
       operation: typeof log.operation === "string" ? log.operation : "",
       isErr: typeof log.isErr === "boolean" ? log.isErr : false,
       payload: {
-        title: payloadTitle,
-        body: payloadBody,
+        title: payloadTitleIsString ? log.payload.title : "",
+        body: payloadBodyIsString ? log.payload.body : "",
       },
     };
   }
