@@ -1,6 +1,9 @@
 import { TraceFirebaseStrapi } from "./trace-firebase-strapi";
-import { Log, LogReceive } from "../../../domain/usecases/trace-log";
-import { TraceFirebaseStrapiRepository } from "./../protocols/trace-firebase-strapi-repository";
+import {
+  LogReceive,
+  Log,
+  TraceFirebaseStrapiRepository,
+} from "./trace-firebase-strapi-protocols";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const makeFakeEntryLog = (): any => ({
