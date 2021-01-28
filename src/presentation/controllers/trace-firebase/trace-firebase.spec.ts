@@ -6,11 +6,7 @@ interface SutTypes {
 }
 
 const makeSut = (): SutTypes => {
-  const validatePayloadUtil = new ValidatePayloadUtil([
-    "operation",
-    "isErr",
-    "payload",
-  ]);
+  const validatePayloadUtil = new ValidatePayloadUtil();
   const sut = new TraceFirebaseController(validatePayloadUtil);
 
   return {

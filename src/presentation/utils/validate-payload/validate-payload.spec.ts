@@ -4,8 +4,8 @@ interface SutTypes {
   sut: ValidatePayloadUtil;
 }
 
-const makeSut = (requiredFields: Array<string>): SutTypes => {
-  const sut = new ValidatePayloadUtil(requiredFields);
+const makeSut = (): SutTypes => {
+  const sut = new ValidatePayloadUtil();
 
   return {
     sut,
@@ -15,13 +15,17 @@ const makeSut = (requiredFields: Array<string>): SutTypes => {
 describe("ValidatePayload Util", () => {
   describe("containsAllRequiredFields >> should be validate if not contains required fields in payload", () => {
     test("should returns true if payload is a not object", () => {
-      const { sut } = makeSut(["resultCode", "message"]);
+      const { sut } = makeSut();
+
+      sut.setRequiredFields(["resultCode", "message"]);
 
       expect(sut.setPayload("").containsAllRequiredFields()).toBe(false);
     });
 
     test("should returns true", () => {
-      const { sut } = makeSut(["resultCode", "message"]);
+      const { sut } = makeSut();
+
+      sut.setRequiredFields(["resultCode", "message"]);
 
       const testablePayload = {
         resultCode: 200,
@@ -34,7 +38,9 @@ describe("ValidatePayload Util", () => {
     });
 
     test("should returns false", () => {
-      const { sut } = makeSut(["resultCode", "message"]);
+      const { sut } = makeSut();
+
+      sut.setRequiredFields(["resultCode", "message"]);
 
       const testablePayload = {
         message: "any_message",
@@ -48,7 +54,9 @@ describe("ValidatePayload Util", () => {
 
   describe("exibeInvalidFields >> should be returned an string with property names are missing", () => {
     test("should returns all required fields if payload is a not object", () => {
-      const { sut } = makeSut(["resultCode", "message"]);
+      const { sut } = makeSut();
+
+      sut.setRequiredFields(["resultCode", "message"]);
 
       expect(sut.setPayload("").exibeMissingFields()).toEqual([
         "resultCode",
@@ -57,7 +65,9 @@ describe("ValidatePayload Util", () => {
     });
 
     test("should be returns resultCode property", () => {
-      const { sut } = makeSut(["resultCode", "message"]);
+      const { sut } = makeSut();
+
+      sut.setRequiredFields(["resultCode", "message"]);
 
       const testablePayload = {
         message: "any_message",
