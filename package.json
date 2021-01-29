@@ -1,6 +1,6 @@
 {
   "name": "menon-log-trace",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Log trace client 💫",
   "main": "dist/src/main/index.js",
   "author": "pedromoraisf <pedro.morais1997@gmail.com>",
