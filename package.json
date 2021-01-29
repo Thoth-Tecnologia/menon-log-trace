@@ -19,6 +19,7 @@
     "@types/node-fetch": "^2.5.8",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
+    "codecov": "^3.8.1",
     "eslint": "^7.12.1",
     "git-commit-msg-linter": "^3.0.0",
     "husky": "^4.3.8",
