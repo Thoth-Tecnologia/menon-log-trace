@@ -1,9 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { HttpClientProtocols } from "../../../../utils/http-client";
 import { TraceFirebaseStrapiRepository } from "./trace-firebase-strapi";
 
 const makeFakeApiHelper = (): any => ({
   baseUrl: "any.base.url",
 });
+
+const makeFakeHttpClient = (): any => {
+  class FakeHttpClient implements HttpClientProtocols {
+    async post(URI: string, data: any): Promise<any> {
+      return new Promise((resolve) => resolve(data));
+    }
+    ok(): boolean {
+      return true;
+    }
+  }
+
+  return new FakeHttpClient();
+};
 
 const makeFakeEntryLog = (): any => ({
   operation: "",
@@ -16,24 +30,27 @@ const makeFakeEntryLog = (): any => ({
 
 interface SutTypes {
   sut: TraceFirebaseStrapiRepository;
+  fakeHttpClient: HttpClientProtocols;
 }
 
 const makeSut = (): SutTypes => {
   const fakeApiHelper = makeFakeApiHelper();
-  const sut = new TraceFirebaseStrapiRepository(fakeApiHelper);
+  const fakeHttpClient = makeFakeHttpClient();
+  const sut = new TraceFirebaseStrapiRepository(fakeApiHelper, fakeHttpClient);
 
   return {
     sut,
+    fakeHttpClient,
   };
 };
 
 describe("TraceFirebaseStrapi Repository", () => {
-  test("should be call fetch instance with correct request values", async () => {
-    const { sut } = makeSut();
+  test("should be call axios instance with correct request values", async () => {
+    const { sut, fakeHttpClient } = makeSut();
 
-    const spyFetch = jest.spyOn(sut, "fetch");
+    const spyPostMethod = jest.spyOn(fakeHttpClient, "post");
 
-    spyFetch.mockImplementation(
+    spyPostMethod.mockImplementation(
       () =>
         new Promise((resolve) =>
           resolve({
@@ -45,18 +62,18 @@ describe("TraceFirebaseStrapi Repository", () => {
     );
     await sut.saveLog(makeFakeEntryLog());
 
-    expect(spyFetch).toHaveBeenCalledWith(makeFakeApiHelper().baseUrl, {
-      method: "POST",
-      body: makeFakeEntryLog(),
-    });
+    expect(spyPostMethod).toHaveBeenCalledWith(
+      makeFakeApiHelper().baseUrl,
+      makeFakeEntryLog()
+    );
   });
 
-  test("should be returns false if fetch dependecy Throws", async () => {
-    const { sut } = makeSut();
+  test("should be returns false if axios dependecy Throws", async () => {
+    const { sut, fakeHttpClient } = makeSut();
 
-    const spyFetch = jest.spyOn(sut, "fetch");
+    const spyPostMethod = jest.spyOn(fakeHttpClient, "post");
 
-    spyFetch.mockImplementation(
+    spyPostMethod.mockImplementation(
       () => new Promise((resolve, reject) => reject(new Error()))
     );
     const testableResponse = await sut.saveLog(makeFakeEntryLog());

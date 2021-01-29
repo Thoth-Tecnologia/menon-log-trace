@@ -4,9 +4,11 @@ import { ValidatePayloadHelper } from "../../presentation/helpers/validate-paylo
 import { TraceFirebaseStrapi } from "../../data/usecases/trace-log/trace-firebase-strapi";
 import { TraceFirebaseStrapiRepository } from "../../infra/api/strapi/trace-firebase-strapi-repository/trace-firebase-strapi";
 import ApiHelper from "../../infra/api/helper/api-helper";
+import { HttpClient } from "../../utils/http-client/http-client";
 
 const makeTraceLogStrapiRepository = (): TraceFirebaseStrapiRepository => {
-  return new TraceFirebaseStrapiRepository(ApiHelper);
+  const httpClient = new HttpClient();
+  return new TraceFirebaseStrapiRepository(ApiHelper, httpClient);
 };
 
 const makeTraceLogStrapi = (): TraceFirebaseStrapi => {
