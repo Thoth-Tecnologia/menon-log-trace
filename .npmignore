@@ -1,0 +1,26 @@
+# Test files
+jest.config.js
+jest-integration.config.js
+jest-unit.config.js
+**.spec.js
+**.test.js
+coverage
+
+# Md files
+readme.md
+
+# Repository and CI
+.github
+.lintstagedrc.json
+.huskyrc.json
+
+# Typescript configs
+tsconfig.json
+
+# Formatters
+.eslintrc
+.eslintignore
+.editorconfig
+
+# Core
+src
