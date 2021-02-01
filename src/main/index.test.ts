@@ -1,4 +1,4 @@
-import { PayloadReceive } from "../presentation/controllers/protocols";
+import { PayloadReceive } from "@presentation/controllers/protocols";
 import menonLogTrace from "./index";
 
 jest.setTimeout(30000);

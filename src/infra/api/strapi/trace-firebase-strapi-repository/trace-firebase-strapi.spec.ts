@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpClientProtocols } from "../../../../utils/http-client";
+import { HttpClientProtocols } from "@utils/http-client";
 import { TraceFirebaseStrapiRepository } from "./trace-firebase-strapi";
 
 const makeFakeApiHelper = (): any => ({
