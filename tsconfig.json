@@ -5,7 +5,17 @@
     "target": "es2019",
     "esModuleInterop": true,
     "allowJs": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@test/*": ["./test/*"],
+      "@data/*": ["./src/test/*"],
+      "@domain/*": ["./src/domain/*"],
+      "@infra/*": ["./src/infra/*"],
+      "@main/*": ["./src/main/*"],
+      "@presentation/*": ["./src/presentation/*"],
+      "@utils/*": ["./src/utils/*"],
+    },
   }, 
   "exclude": [
     "jest.**",
