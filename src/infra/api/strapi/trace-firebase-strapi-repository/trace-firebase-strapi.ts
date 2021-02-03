@@ -1,4 +1,4 @@
-import { TraceFirebaseStrapiRepo } from "@data/usecases/protocols/trace-firebase-strapi-repository";
+import { TraceFirebaseStrapiRepo } from "@src/data/usecases/protocols/strapi-log-trace-repository";
 import { LogReceive } from "@src/domain/usecases/notification-trace-log";
 import { HttpClient } from "@utils/http-client/http-client";
 import ApiHelper from "./../../helper/api-helper";

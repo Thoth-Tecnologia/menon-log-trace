@@ -2,7 +2,7 @@ import {
   TraceLog,
   LogReceive,
   TraceFirebaseStrapiRepo,
-} from "./trace-firebase-strapi-protocols";
+} from "./notification-trace-log-strapi-protocols";
 
 export class TraceFirebaseStrapi implements TraceLog {
   private readonly traceFirebaseStrapiRepo: TraceFirebaseStrapiRepo;

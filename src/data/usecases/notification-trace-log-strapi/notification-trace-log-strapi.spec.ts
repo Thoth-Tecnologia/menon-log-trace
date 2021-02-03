@@ -1,8 +1,8 @@
-import { TraceFirebaseStrapi } from "./trace-firebase-strapi";
+import { TraceFirebaseStrapi } from "./notification-trace-log-strapi";
 import {
   LogReceive,
   TraceFirebaseStrapiRepo,
-} from "./trace-firebase-strapi-protocols";
+} from "./notification-trace-log-strapi-protocols";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const makeFakeEntryLog = (): any => ({
