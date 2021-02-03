@@ -7,7 +7,7 @@ import {
 } from "./notification-trace-log-protocols";
 import { badRequest, ok } from "../../helpers/responses";
 
-export class TraceFirebaseController implements Controller {
+export class NotificationTraceLogController implements Controller {
   private readonly validatePayload: ValidatePayload;
   private readonly traceLog: NotificationTraceLog;
 

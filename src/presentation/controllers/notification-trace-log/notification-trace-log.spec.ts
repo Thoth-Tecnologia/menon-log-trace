@@ -1,4 +1,4 @@
-import { TraceFirebaseController } from "./notification-trace-log";
+import { NotificationTraceLogController } from "./notification-trace-log";
 import { ValidatePayloadHelper } from "../../helpers/validate-payload";
 import {
   NotificationTraceLog,
@@ -26,14 +26,14 @@ const makeNotificationTraceLogStub = (): NotificationTraceLog => {
 };
 
 interface SutTypes {
-  sut: TraceFirebaseController;
+  sut: NotificationTraceLogController;
   notificationTraceLogStub: NotificationTraceLog;
 }
 
 const makeSut = (): SutTypes => {
   const notificationTraceLogStub = makeNotificationTraceLogStub();
   const validatePayloadHelper = new ValidatePayloadHelper();
-  const sut = new TraceFirebaseController(
+  const sut = new NotificationTraceLogController(
     validatePayloadHelper,
     notificationTraceLogStub
   );

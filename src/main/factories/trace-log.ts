@@ -1,5 +1,5 @@
 import { Controller } from "@presentation/controllers/protocols";
-import { TraceFirebaseController } from "@presentation/controllers/notification-trace-log/notification-trace-log";
+import { NotificationTraceLogController } from "@presentation/controllers/notification-trace-log/notification-trace-log";
 import { ValidatePayloadHelper } from "@presentation/helpers/validate-payload";
 import { NotificationTraceLogStrapi } from "@data/usecases/notification-trace-log-strapi/notification-trace-log-strapi";
 import { StrapiLogTraceRepository } from "@infra/api/strapi/log-trace";
@@ -19,5 +19,8 @@ const makeTraceLogStrapi = (): NotificationTraceLogStrapi => {
 export default (): Controller => {
   const validatePayloadHelper = new ValidatePayloadHelper();
   const traceLogStrapi = makeTraceLogStrapi();
-  return new TraceFirebaseController(validatePayloadHelper, traceLogStrapi);
+  return new NotificationTraceLogController(
+    validatePayloadHelper,
+    traceLogStrapi
+  );
 };
