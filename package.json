@@ -1,6 +1,6 @@
 {
   "name": "menon-log-trace",
-  "version": "1.0.7",
+  "version": "1.0.7-1",
   "description": "Log trace client 💫",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
@@ -13,8 +13,7 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "yarn clean && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
-    "prepublish": "yarn build",
-    "postpublish": "yarn clean",
+    "prepare": "yarn build",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "yarn lint --fix",
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
