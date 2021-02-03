@@ -1,5 +1,5 @@
 import { TraceFirebaseStrapiRepo } from "@data/usecases/protocols/trace-firebase-strapi-repository";
-import { LogReceive } from "@domain/usecases/trace-log";
+import { LogReceive } from "@src/domain/usecases/notification-trace-log";
 import { HttpClient } from "@utils/http-client/http-client";
 import ApiHelper from "./../../helper/api-helper";
 
