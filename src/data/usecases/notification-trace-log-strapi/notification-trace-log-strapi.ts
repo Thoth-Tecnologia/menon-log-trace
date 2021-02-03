@@ -1,10 +1,10 @@
 import {
-  TraceLog,
+  NotificationTraceLog,
   LogReceive,
   ApiLogTraceRepo,
 } from "./notification-trace-log-strapi-protocols";
 
-export class NotificationTraceLogStrapi implements TraceLog {
+export class NotificationTraceLogStrapi implements NotificationTraceLog {
   private readonly apiLogTraceRepo: ApiLogTraceRepo;
   private readonly logDefault: LogReceive = {
     operation: "",

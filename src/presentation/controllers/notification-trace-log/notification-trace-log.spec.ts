@@ -1,6 +1,9 @@
 import { TraceFirebaseController } from "./notification-trace-log";
 import { ValidatePayloadHelper } from "../../helpers/validate-payload";
-import { TraceLog, LogReceive } from "./notification-trace-log-protocols";
+import {
+  NotificationTraceLog,
+  LogReceive,
+} from "./notification-trace-log-protocols";
 
 const makeFakeRequest = (): LogReceive => ({
   operation: "any_operation",
@@ -11,30 +14,33 @@ const makeFakeRequest = (): LogReceive => ({
   },
 });
 
-const makeTraceLogStub = (): TraceLog => {
-  class TraceLogStub implements TraceLog {
+const makeNotificationTraceLogStub = (): NotificationTraceLog => {
+  class NotificationTraceLogStub implements NotificationTraceLog {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async trace(log: LogReceive = makeFakeRequest()): Promise<boolean> {
       return new Promise((resolve) => resolve(true));
     }
   }
 
-  return new TraceLogStub();
+  return new NotificationTraceLogStub();
 };
 
 interface SutTypes {
   sut: TraceFirebaseController;
-  traceLogStub: TraceLog;
+  notificationTraceLogStub: NotificationTraceLog;
 }
 
 const makeSut = (): SutTypes => {
-  const traceLogStub = makeTraceLogStub();
+  const notificationTraceLogStub = makeNotificationTraceLogStub();
   const validatePayloadHelper = new ValidatePayloadHelper();
-  const sut = new TraceFirebaseController(validatePayloadHelper, traceLogStub);
+  const sut = new TraceFirebaseController(
+    validatePayloadHelper,
+    notificationTraceLogStub
+  );
 
   return {
     sut,
-    traceLogStub,
+    notificationTraceLogStub,
   };
 };
 
@@ -94,10 +100,10 @@ describe("TraceFirebase Controller", () => {
     });
   });
 
-  it("should call TraceLog with correct values", () => {
-    const { sut, traceLogStub } = makeSut();
+  it("should call notificationTraceLogStub with correct values", () => {
+    const { sut, notificationTraceLogStub } = makeSut();
 
-    const traceSpy = jest.spyOn(traceLogStub, "trace");
+    const traceSpy = jest.spyOn(notificationTraceLogStub, "trace");
 
     const fakeRequest = makeFakeRequest();
     sut.handle(fakeRequest);

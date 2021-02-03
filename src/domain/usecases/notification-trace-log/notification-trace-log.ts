@@ -1,5 +1,5 @@
 import { LogReceive } from "./notification-trace-log-protocols";
 
-export interface TraceLog {
+export interface NotificationTraceLog {
   trace(log: LogReceive): Promise<boolean>;
 }

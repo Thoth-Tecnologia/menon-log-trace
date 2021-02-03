@@ -3,15 +3,18 @@ import {
   PayloadReceive,
   PayloadResponse,
   ValidatePayload,
-  TraceLog,
+  NotificationTraceLog,
 } from "./notification-trace-log-protocols";
 import { badRequest, ok } from "../../helpers/responses";
 
 export class TraceFirebaseController implements Controller {
   private readonly validatePayload: ValidatePayload;
-  private readonly traceLog: TraceLog;
+  private readonly traceLog: NotificationTraceLog;
 
-  constructor(validatePayload: ValidatePayload, traceLog: TraceLog) {
+  constructor(
+    validatePayload: ValidatePayload,
+    traceLog: NotificationTraceLog
+  ) {
     this.validatePayload = validatePayload;
     this.traceLog = traceLog;
 
