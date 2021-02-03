@@ -1,8 +1,6 @@
-import { LogPayload } from './../../entities/log'
-export { Log } from './../../entities/log'
+import { Log } from "./../../entities/log";
 
-export interface LogReceive {
-  operation: string
-  isErr: boolean
-  payload: LogPayload
-}
+type omitId = Omit<Log, "id">;
+type omitCreatedAtAndId = Omit<omitId, "createdAt">;
+
+export type LogReceive = omitCreatedAtAndId;
