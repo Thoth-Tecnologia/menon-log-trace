@@ -2,13 +2,13 @@ import { Controller } from "@presentation/controllers/protocols";
 import { TraceFirebaseController } from "@presentation/controllers/notification-trace-log/notification-trace-log";
 import { ValidatePayloadHelper } from "@presentation/helpers/validate-payload";
 import { NotificationTraceLogStrapi } from "@data/usecases/notification-trace-log-strapi/notification-trace-log-strapi";
-import { TraceFirebaseStrapiRepository } from "@infra/api/strapi/log-trace";
+import { StrapiLogTraceRepository } from "@infra/api/strapi/log-trace";
 import ApiHelper from "@infra/api/helper/api-helper";
 import { HttpClient } from "@utils/http-client/http-client";
 
-const makeTraceLogStrapiRepository = (): TraceFirebaseStrapiRepository => {
+const makeTraceLogStrapiRepository = (): StrapiLogTraceRepository => {
   const httpClient = new HttpClient();
-  return new TraceFirebaseStrapiRepository(ApiHelper, httpClient);
+  return new StrapiLogTraceRepository(ApiHelper, httpClient);
 };
 
 const makeTraceLogStrapi = (): NotificationTraceLogStrapi => {

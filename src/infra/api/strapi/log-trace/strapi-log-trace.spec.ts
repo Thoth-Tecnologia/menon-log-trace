@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClientProtocols } from "../../../../utils/http-client";
-import { TraceFirebaseStrapiRepository } from "./strapi-log-trace";
+import { StrapiLogTraceRepository } from "./strapi-log-trace";
 
 const makeFakeApiHelper = (): any => ({
   baseUrl: "any.base.url",
@@ -29,14 +29,14 @@ const makeFakeEntryLog = (): any => ({
 });
 
 interface SutTypes {
-  sut: TraceFirebaseStrapiRepository;
+  sut: StrapiLogTraceRepository;
   fakeHttpClient: HttpClientProtocols;
 }
 
 const makeSut = (): SutTypes => {
   const fakeApiHelper = makeFakeApiHelper();
   const fakeHttpClient = makeFakeHttpClient();
-  const sut = new TraceFirebaseStrapiRepository(fakeApiHelper, fakeHttpClient);
+  const sut = new StrapiLogTraceRepository(fakeApiHelper, fakeHttpClient);
 
   return {
     sut,
@@ -44,7 +44,7 @@ const makeSut = (): SutTypes => {
   };
 };
 
-describe("TraceFirebaseStrapi Repository", () => {
+describe("StrapiLogTraceRepository Repository", () => {
   test("should be call axios instance with correct request values", async () => {
     const { sut, fakeHttpClient } = makeSut();
 

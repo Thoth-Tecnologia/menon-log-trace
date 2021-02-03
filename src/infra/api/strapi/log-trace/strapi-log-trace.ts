@@ -3,7 +3,7 @@ import { LogReceive } from "@domain/usecases/notification-trace-log";
 import { HttpClient } from "@utils/http-client";
 import ApiHelper from "../../helper/api-helper";
 
-export class TraceFirebaseStrapiRepository implements ApiLogTraceRepo {
+export class StrapiLogTraceRepository implements ApiLogTraceRepo {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly httpClient: HttpClient;
   private readonly apiHelper: typeof ApiHelper;
