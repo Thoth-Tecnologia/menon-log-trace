@@ -4,6 +4,7 @@ import { StrapiLogTraceRepository } from "./strapi-log-trace";
 
 const makeFakeApiHelper = (): any => ({
   baseUrl: "any.base.url",
+  notificationTraceLogEndpoint: "/endpoint",
 });
 
 const makeFakeHttpClient = (): any => {
@@ -62,10 +63,9 @@ describe("StrapiLogTraceRepository Repository", () => {
     );
     await sut.saveLog(makeFakeEntryLog());
 
-    expect(spyPostMethod).toHaveBeenCalledWith(
-      makeFakeApiHelper().baseUrl,
-      makeFakeEntryLog()
-    );
+    const { baseUrl, notificationTraceLogEndpoint } = makeFakeApiHelper();
+    const callUrl = `${baseUrl}${notificationTraceLogEndpoint}`;
+    expect(spyPostMethod).toHaveBeenCalledWith(callUrl, makeFakeEntryLog());
   });
 
   test("should be returns false if axios dependecy Throws", async () => {

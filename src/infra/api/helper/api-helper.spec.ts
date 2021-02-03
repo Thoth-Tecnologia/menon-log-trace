@@ -8,6 +8,6 @@ describe("ApiHelper", () => {
 
   test("should be set notificationTraceLogEndpoint correctly", () => {
     ApiHelper.setNotificationTraceLogEndpoint("any_endpoint");
-    expect(ApiHelper.notificationTraceLogEndpoint).toEqual("any_endpoint");
+    expect(ApiHelper.notificationTraceLogEndpoint).toEqual("/any_endpoint");
   });
 });
