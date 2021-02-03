@@ -4,7 +4,7 @@ import {
   PayloadResponse,
   ValidatePayload,
   TraceLog,
-} from "./trace-firebase-protocols";
+} from "./notification-trace-log-protocols";
 import { badRequest, ok } from "../../helpers/responses";
 
 export class TraceFirebaseController implements Controller {

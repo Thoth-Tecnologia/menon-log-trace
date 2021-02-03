@@ -1,5 +1,5 @@
 import { Controller } from "@presentation/controllers/protocols";
-import { TraceFirebaseController } from "@presentation/controllers/trace-firebase/trace-firebase";
+import { TraceFirebaseController } from "@src/presentation/controllers/notification-trace-log/notification-trace-log";
 import { ValidatePayloadHelper } from "@presentation/helpers/validate-payload";
 import { TraceFirebaseStrapi } from "@data/usecases/trace-log/trace-firebase-strapi";
 import { TraceFirebaseStrapiRepository } from "@infra/api/strapi/trace-firebase-strapi-repository/trace-firebase-strapi";

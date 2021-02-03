@@ -1,4 +1,4 @@
-export * from "./../protocols/controller";
+export * from "../protocols/controller";
 export { ValidatePayload } from "../../helpers/validate-payload";
 export {
   TraceLog,

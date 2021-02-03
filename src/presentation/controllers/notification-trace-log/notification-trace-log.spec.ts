@@ -1,6 +1,6 @@
-import { TraceFirebaseController } from "./trace-firebase";
-import { ValidatePayloadHelper } from "./../../helpers/validate-payload";
-import { TraceLog, LogReceive } from "./trace-firebase-protocols";
+import { TraceFirebaseController } from "./notification-trace-log";
+import { ValidatePayloadHelper } from "../../helpers/validate-payload";
+import { TraceLog, LogReceive } from "./notification-trace-log-protocols";
 
 const makeFakeRequest = (): LogReceive => ({
   operation: "any_operation",
