@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpClientProtocols } from "./../../../../utils/http-client";
-import { TraceFirebaseStrapiRepository } from "./trace-firebase-strapi";
+import { HttpClientProtocols } from "../../../../utils/http-client";
+import { TraceFirebaseStrapiRepository } from "./strapi-log-trace";
 
 const makeFakeApiHelper = (): any => ({
   baseUrl: "any.base.url",

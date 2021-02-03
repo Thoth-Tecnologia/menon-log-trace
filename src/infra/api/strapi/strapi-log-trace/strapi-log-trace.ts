@@ -1,7 +1,7 @@
 import { TraceFirebaseStrapiRepo } from "@src/data/usecases/protocols/strapi-log-trace-repository";
 import { LogReceive } from "@src/domain/usecases/notification-trace-log";
 import { HttpClient } from "@utils/http-client/http-client";
-import ApiHelper from "./../../helper/api-helper";
+import ApiHelper from "../../helper/api-helper";
 
 export class TraceFirebaseStrapiRepository implements TraceFirebaseStrapiRepo {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
