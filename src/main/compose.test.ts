@@ -17,7 +17,9 @@ describe("Main Layer Integration", () => {
     menonLogTrace.setBaseUrl("https://jsonplaceholder.typicode.com/posts");
 
     const defaultLog = makeDefaultLog();
-    const testableTraceLog = await menonLogTrace.traceLogFirebase(defaultLog);
+    const testableTraceLog = await menonLogTrace.notificationTraceLog(
+      defaultLog
+    );
 
     expect(testableTraceLog).toEqual({
       resultCode: 200,
