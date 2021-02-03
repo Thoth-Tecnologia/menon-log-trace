@@ -1,8 +1,8 @@
 import { Controller } from "@presentation/controllers/protocols";
-import { TraceFirebaseController } from "@src/presentation/controllers/notification-trace-log/notification-trace-log";
+import { TraceFirebaseController } from "@presentation/controllers/notification-trace-log/notification-trace-log";
 import { ValidatePayloadHelper } from "@presentation/helpers/validate-payload";
-import { TraceFirebaseStrapi } from "@src/data/usecases/notification-trace-log-strapi/notification-trace-log-strapi";
-import { TraceFirebaseStrapiRepository } from "@src/infra/api/strapi/strapi-log-trace/strapi-log-trace";
+import { NotificationTraceLogStrapi } from "@data/usecases/notification-trace-log-strapi/notification-trace-log-strapi";
+import { TraceFirebaseStrapiRepository } from "@infra/api/strapi/strapi-log-trace/strapi-log-trace";
 import ApiHelper from "@infra/api/helper/api-helper";
 import { HttpClient } from "@utils/http-client/http-client";
 
@@ -11,9 +11,9 @@ const makeTraceLogStrapiRepository = (): TraceFirebaseStrapiRepository => {
   return new TraceFirebaseStrapiRepository(ApiHelper, httpClient);
 };
 
-const makeTraceLogStrapi = (): TraceFirebaseStrapi => {
+const makeTraceLogStrapi = (): NotificationTraceLogStrapi => {
   const traceFirebaseStrapiRepository = makeTraceLogStrapiRepository();
-  return new TraceFirebaseStrapi(traceFirebaseStrapiRepository);
+  return new NotificationTraceLogStrapi(traceFirebaseStrapiRepository);
 };
 
 export default (): Controller => {

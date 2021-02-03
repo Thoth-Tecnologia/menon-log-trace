@@ -1,7 +1,7 @@
-import { TraceFirebaseStrapi } from "./notification-trace-log-strapi";
+import { NotificationTraceLogStrapi } from "./notification-trace-log-strapi";
 import {
   LogReceive,
-  TraceFirebaseStrapiRepo,
+  ApiLogTraceRepo,
 } from "./notification-trace-log-strapi-protocols";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,33 +14,33 @@ const makeFakeEntryLog = (): any => ({
   },
 });
 
-const makeFakeTraceFirebaseStrapiRepo = (): TraceFirebaseStrapiRepo => {
-  class FakeTraceFirebaseStrapiRepo {
+const makeFakeApiLogTraceRepo = (): ApiLogTraceRepo => {
+  class fakeApiLogTraceRepo {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async saveLog(log: LogReceive): Promise<boolean> {
       return new Promise((resolve) => resolve(true));
     }
   }
 
-  return new FakeTraceFirebaseStrapiRepo();
+  return new fakeApiLogTraceRepo();
 };
 
 interface SutTypes {
-  sut: TraceFirebaseStrapi;
-  fakeTraceFirebaseStrapiRepo: TraceFirebaseStrapiRepo;
+  sut: NotificationTraceLogStrapi;
+  fakeApiLogTraceRepo: ApiLogTraceRepo;
 }
 
 const makeSut = (): SutTypes => {
-  const fakeTraceFirebaseStrapiRepo = makeFakeTraceFirebaseStrapiRepo();
-  const sut = new TraceFirebaseStrapi(fakeTraceFirebaseStrapiRepo);
+  const fakeApiLogTraceRepo = makeFakeApiLogTraceRepo();
+  const sut = new NotificationTraceLogStrapi(fakeApiLogTraceRepo);
 
   return {
     sut,
-    fakeTraceFirebaseStrapiRepo,
+    fakeApiLogTraceRepo,
   };
 };
 
-describe("TraceFirebaseStrapi", () => {
+describe("NotificationTraceLogStrapi", () => {
   test("should call treatLog with correct values", async () => {
     const { sut } = makeSut();
 
@@ -83,9 +83,9 @@ describe("TraceFirebaseStrapi", () => {
   });
 
   test("should call saveLog with correct values", async () => {
-    const { sut, fakeTraceFirebaseStrapiRepo } = makeSut();
+    const { sut, fakeApiLogTraceRepo } = makeSut();
 
-    const spyRepository = jest.spyOn(fakeTraceFirebaseStrapiRepo, "saveLog");
+    const spyRepository = jest.spyOn(fakeApiLogTraceRepo, "saveLog");
 
     const fakeEntryLog = makeFakeEntryLog();
     await sut.trace(fakeEntryLog);

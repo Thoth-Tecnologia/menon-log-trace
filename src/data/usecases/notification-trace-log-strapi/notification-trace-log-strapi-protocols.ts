@@ -1,5 +1,2 @@
-export {
-  TraceLog,
-  LogReceive,
-} from "@src/domain/usecases/notification-trace-log";
-export { TraceFirebaseStrapiRepo } from "../protocols/strapi-log-trace-repository";
+export { TraceLog, LogReceive } from "@domain/usecases/notification-trace-log";
+export { ApiLogTraceRepo } from "../protocols/api-log-trace-repository";
