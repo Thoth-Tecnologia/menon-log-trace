@@ -1,4 +1,5 @@
 import { PayloadReceive } from "./../presentation/controllers/protocols";
+import ApiHelper from "./../infra/api/helper/api-helper";
 import menonLogTrace from "./compose";
 
 jest.setTimeout(30000);
@@ -13,15 +14,18 @@ const makeDefaultLog = (): PayloadReceive => ({
 });
 
 describe("Main Layer Integration", () => {
-  test("should be set correct url and request fake api", async () => {
-    menonLogTrace.setBaseUrl("https://jsonplaceholder.typicode.com/posts");
+  const baseUrl = "https://jsonplaceholder.typicode.com/posts";
 
+  test("should be set correct url", () => {
+    menonLogTrace.setBaseUrl(baseUrl);
+    expect(ApiHelper.baseUrl).toEqual(baseUrl);
+  });
+
+  test("should be request fake api", async () => {
     const defaultLog = makeDefaultLog();
-    const testableTraceLog = await menonLogTrace.notificationTraceLog(
-      defaultLog
-    );
+    const testable = await menonLogTrace.notificationTraceLog(defaultLog);
 
-    expect(testableTraceLog).toEqual({
+    expect(testable).toEqual({
       resultCode: 200,
       message: "Action has been succeded",
     });
