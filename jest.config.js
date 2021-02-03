@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 /* eslint-disable quotes */
+const { resolve } = require("path");
+const root = resolve(__dirname);
+
 module.exports = {
-  roots: ["./src"],
+  rootDir: root,
   collectCoverageFrom: ["./src/**/*.ts", "!<rootDir>/src/main/**"],
   coverageDirectory: "coverage",
   testEnvironment: "node",

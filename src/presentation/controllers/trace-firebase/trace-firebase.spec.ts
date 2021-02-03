@@ -1,5 +1,5 @@
 import { TraceFirebaseController } from "./trace-firebase";
-import { ValidatePayloadHelper } from "../../helpers/validate-payload";
+import { ValidatePayloadHelper } from "./../../helpers/validate-payload";
 import { TraceLog, LogReceive } from "./trace-firebase-protocols";
 
 const makeFakeRequest = (): LogReceive => ({
