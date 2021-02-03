@@ -14,20 +14,31 @@ const makeDefaultLog = (): PayloadReceive => ({
 });
 
 describe("Main Layer Integration", () => {
-  const baseUrl = "https://jsonplaceholder.typicode.com/posts";
+  const baseUrl = "https://jsonplaceholder.typicode.com";
 
-  test("should be set correct url", () => {
+  test("should be set correct base url", () => {
     menonLogTrace.setBaseUrl(baseUrl);
     expect(ApiHelper.baseUrl).toEqual(baseUrl);
   });
 
-  test("should be request fake api", async () => {
-    const defaultLog = makeDefaultLog();
-    const testable = await menonLogTrace.notificationTraceLog(defaultLog);
+  describe("should be trace notification log correctly", () => {
+    afterAll(() => {
+      menonLogTrace.setNotificationTraceLogEndpoint("");
+    });
 
-    expect(testable).toEqual({
-      resultCode: 200,
-      message: "Action has been succeded",
+    test("should be set correct notification endpoint", () => {
+      menonLogTrace.setNotificationTraceLogEndpoint("posts");
+      expect(ApiHelper.notificationTraceLogEndpoint).toEqual("/posts");
+    });
+
+    test("should be request fake api", async () => {
+      const defaultLog = makeDefaultLog();
+      const testable = await menonLogTrace.notificationTraceLog(defaultLog);
+
+      expect(testable).toEqual({
+        resultCode: 200,
+        message: "Action has been succeded",
+      });
     });
   });
 });
