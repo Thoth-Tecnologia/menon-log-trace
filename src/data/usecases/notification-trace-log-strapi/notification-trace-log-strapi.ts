@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   NotificationTraceLog,
   LogReceive,
@@ -19,24 +20,35 @@ export class NotificationTraceLogStrapi implements NotificationTraceLog {
     this.apiLogTraceRepo = apiLogTraceRepo;
   }
 
-  async trace(log: LogReceive = this.logDefault): Promise<boolean> {
-    const treatedLog = this.treatLog(log);
-    const savedLog = await this.apiLogTraceRepo.saveLog(treatedLog);
+  async trace(log: any = this.logDefault): Promise<boolean> {
+    try {
+      const treatedLog = this.treatLog(log);
+      const savedLog = await this.apiLogTraceRepo.saveLog(treatedLog);
 
-    return savedLog;
+      return savedLog;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   treatLog(log: any = this.logDefault): LogReceive {
     const payloadTitleIsString = log.payload?.title === "string";
     const payloadBodyIsString = log.payload?.body === "string";
 
     return {
-      operation: typeof log.operation === "string" ? log.operation : "",
-      isErr: typeof log.isErr === "boolean" ? log.isErr : false,
+      operation:
+        typeof log.operation === "string"
+          ? log.operation
+          : this.logDefault.operation,
+      isErr: typeof log.isErr === "boolean" ? log.isErr : this.logDefault.isErr,
       payload: {
-        title: payloadTitleIsString ? log.payload.title : "",
-        body: payloadBodyIsString ? log.payload.body : "",
+        title: payloadTitleIsString
+          ? log.payload.title
+          : this.logDefault.payload.title,
+        body: payloadBodyIsString
+          ? log.payload.body
+          : this.logDefault.payload.body,
       },
     };
   }
