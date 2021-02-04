@@ -92,4 +92,18 @@ describe("NotificationTraceLogStrapi", () => {
 
     expect(spyRepository).toHaveBeenCalledWith(fakeEntryLog);
   });
+
+  test("should be not throw new exception if repository throws", async () => {
+    const { sut, fakeApiLogTraceRepo } = makeSut();
+
+    const spySaveLog = jest.spyOn(fakeApiLogTraceRepo, "saveLog");
+    spySaveLog.mockImplementation(
+      () => new Promise((resolve, reject) => reject(new Error()))
+    );
+
+    const fakeEntryLog = makeFakeEntryLog();
+    const testable = await sut.trace(fakeEntryLog);
+
+    expect(testable).toBe(false);
+  });
 });
