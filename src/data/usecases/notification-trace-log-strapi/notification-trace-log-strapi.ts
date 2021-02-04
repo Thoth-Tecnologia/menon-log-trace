@@ -20,19 +20,18 @@ export class NotificationTraceLogStrapi implements NotificationTraceLog {
     this.apiLogTraceRepo = apiLogTraceRepo;
   }
 
-  async trace(log: any = this.logDefault): Promise<boolean> {
+  async trace(log: LogReceive = this.logDefault): Promise<boolean> {
     try {
-      const treatedLog = this.treatLog(log);
-      const savedLog = await this.apiLogTraceRepo.saveLog(treatedLog);
+      const validLogReceive = this.normalizeLogReceive(log);
+      const savedLog = await this.apiLogTraceRepo.saveLog(validLogReceive);
 
       return savedLog;
-    } catch (e) {
-      console.log(e);
+    } catch {
       return false;
     }
   }
 
-  treatLog(log: any = this.logDefault): LogReceive {
+  normalizeLogReceive(log: any = this.logDefault): LogReceive {
     const payloadTitleIsString = log.payload?.title === "string";
     const payloadBodyIsString = log.payload?.body === "string";
 

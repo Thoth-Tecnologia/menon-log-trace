@@ -44,12 +44,12 @@ describe("NotificationTraceLogStrapi", () => {
   test("should call treatLog with correct values", async () => {
     const { sut } = makeSut();
 
-    const spyTreatLog = jest.spyOn(sut, "treatLog");
+    const spyNormalizeLogReceive = jest.spyOn(sut, "normalizeLogReceive");
 
     const fakeEntryLog = makeFakeEntryLog();
     await sut.trace(fakeEntryLog);
 
-    expect(spyTreatLog).toHaveBeenCalledWith(fakeEntryLog);
+    expect(spyNormalizeLogReceive).toHaveBeenCalledWith(fakeEntryLog);
   });
 
   describe("should be formatted Log received with default values if it does not contain", () => {
@@ -68,7 +68,9 @@ describe("NotificationTraceLogStrapi", () => {
       const testableLog = makeFakeEntryLog();
       testableLog.operation = 1;
 
-      expect(sut.treatLog(testableLog)).toEqual(makeFakeDefaultLog());
+      expect(sut.normalizeLogReceive(testableLog)).toEqual(
+        makeFakeDefaultLog()
+      );
     });
 
     test("case payload", () => {
@@ -78,7 +80,9 @@ describe("NotificationTraceLogStrapi", () => {
       testableLog.payload.title = 1;
       testableLog.payload.body = false;
 
-      expect(sut.treatLog(testableLog)).toEqual(makeFakeDefaultLog());
+      expect(sut.normalizeLogReceive(testableLog)).toEqual(
+        makeFakeDefaultLog()
+      );
     });
   });
 

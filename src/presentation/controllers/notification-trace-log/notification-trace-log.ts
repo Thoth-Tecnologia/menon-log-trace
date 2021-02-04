@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import {
   Controller,
-  PayloadReceive,
   PayloadResponse,
   ValidatePayload,
   NotificationTraceLog,
@@ -21,7 +21,8 @@ export class NotificationTraceLogController implements Controller {
     this.setHandlePayloadRequiredFields();
   }
 
-  async handle(payload: PayloadReceive): Promise<PayloadResponse> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async handle(payload: any): Promise<PayloadResponse> {
     this.validatePayload.setPayload(payload);
     if (!this.validatePayload.containsAllRequiredFields()) {
       const missingFields = this.validatePayload.exibeMissingFields();
