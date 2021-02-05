@@ -9,7 +9,7 @@ export class HttpClient implements HttpClientProtocols {
 
   async post(URI: string, data: any): Promise<any> {
     try {
-      const request = await axios.post(`${URI}`, data);
+      const request = await axios.post(URI, data);
       this.latestStatusCode = request.status;
     } catch (e) {
       console.log(e);

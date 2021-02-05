@@ -53,9 +53,9 @@ describe("NotificationTraceLogStrapi", () => {
   });
 
   describe("should be formatted Log received with default values if it does not contain", () => {
-    const makeFakeDefaultLog = () => ({
+    const makeFakeDefaultLog = (): LogReceive => ({
       operation: "",
-      isErr: false,
+      isErr: true,
       payload: {
         title: "",
         body: "",
@@ -68,9 +68,7 @@ describe("NotificationTraceLogStrapi", () => {
       const testableLog = makeFakeEntryLog();
       testableLog.operation = 1;
 
-      expect(sut.normalizeLogReceive(testableLog)).toEqual(
-        makeFakeDefaultLog()
-      );
+      expect(sut.normalizeLogReceive(testableLog)).toEqual(makeFakeEntryLog());
     });
 
     test("case payload", () => {
@@ -80,9 +78,24 @@ describe("NotificationTraceLogStrapi", () => {
       testableLog.payload.title = 1;
       testableLog.payload.body = false;
 
-      expect(sut.normalizeLogReceive(testableLog)).toEqual(
-        makeFakeDefaultLog()
-      );
+      expect(sut.normalizeLogReceive(testableLog)).toEqual(makeFakeEntryLog());
+    });
+
+    test("case correctly payload and wrong isErr", () => {
+      const { sut } = makeSut();
+
+      const testableLog = makeFakeEntryLog();
+      testableLog.isErr = null;
+      testableLog.payload.title = "any_title_notification";
+      testableLog.payload.body = "any_body_notification";
+
+      expect(sut.normalizeLogReceive(testableLog)).toEqual({
+        ...makeFakeDefaultLog(),
+        payload: {
+          title: "any_title_notification",
+          body: "any_body_notification",
+        },
+      });
     });
   });
 

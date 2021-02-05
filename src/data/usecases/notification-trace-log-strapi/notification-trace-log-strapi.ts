@@ -32,8 +32,8 @@ export class NotificationTraceLogStrapi implements NotificationTraceLog {
   }
 
   normalizeLogReceive(log: any = this.logDefault): LogReceive {
-    const payloadTitleIsString = log.payload?.title === "string";
-    const payloadBodyIsString = log.payload?.body === "string";
+    const payloadTitleIsString = typeof log.payload?.title === "string";
+    const payloadBodyIsString = typeof log.payload?.body === "string";
 
     return {
       operation:
