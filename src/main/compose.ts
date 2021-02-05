@@ -1,7 +1,7 @@
-import { global } from "./chunks/global";
-import { notification } from "./chunks/notification";
+import globalChunk from "./chunks/global";
+import notificationChunk from "./chunks/notification";
 
 export default {
-  ...global,
-  ...notification,
+  ...globalChunk,
+  ...notificationChunk,
 };
