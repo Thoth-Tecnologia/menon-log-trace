@@ -36,18 +36,11 @@ export class NotificationTraceLogStrapi implements NotificationTraceLog {
     const payloadBodyIsString = typeof log.payload?.body === "string";
 
     return {
-      operation:
-        typeof log.operation === "string"
-          ? log.operation
-          : this.logDefault.operation,
+      operation: typeof log.operation === "string" ? log.operation : this.logDefault.operation,
       isErr: typeof log.isErr === "boolean" ? log.isErr : this.logDefault.isErr,
       payload: {
-        title: payloadTitleIsString
-          ? log.payload.title
-          : this.logDefault.payload.title,
-        body: payloadBodyIsString
-          ? log.payload.body
-          : this.logDefault.payload.body,
+        title: payloadTitleIsString ? log.payload.title : this.logDefault.payload.title,
+        body: payloadBodyIsString ? log.payload.body : this.logDefault.payload.body,
       },
     };
   }
