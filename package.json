@@ -1,6 +1,6 @@
 {
   "name": "menon-log-trace",
-  "version": "1.0.8-3",
+  "version": "1.1.0",
   "description": "Log trace client 💫",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
