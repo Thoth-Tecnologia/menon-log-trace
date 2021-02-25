@@ -2,6 +2,7 @@
 import {
   Controller,
   PayloadResponse,
+  PayloadReceive,
   ValidatePayload,
   NotificationTraceLog,
 } from "./notification-trace-log-protocols";
@@ -22,7 +23,7 @@ export class NotificationTraceLogController implements Controller {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async handle(payload: any): Promise<PayloadResponse> {
+  async handle(payload: PayloadReceive): Promise<PayloadResponse> {
     this.validatePayload.setPayload(payload);
     if (!this.validatePayload.containsAllRequiredFields()) {
       const missingFields = this.validatePayload.exibeMissingFields();
