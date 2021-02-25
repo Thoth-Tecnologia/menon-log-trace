@@ -12,10 +12,7 @@ export class NotificationTraceLogController implements Controller {
   private readonly validatePayload: ValidatePayload;
   private readonly traceLog: NotificationTraceLog;
 
-  constructor(
-    validatePayload: ValidatePayload,
-    traceLog: NotificationTraceLog
-  ) {
+  constructor(validatePayload: ValidatePayload, traceLog: NotificationTraceLog) {
     this.validatePayload = validatePayload;
     this.traceLog = traceLog;
 
