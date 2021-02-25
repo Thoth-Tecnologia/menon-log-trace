@@ -44,7 +44,7 @@ const makeSut = (): SutTypes => {
   };
 };
 
-describe("TraceFirebase Controller", () => {
+describe("Notification Trace Log Controller", () => {
   it("should returns resultCode 400 if operation property is not provided", async () => {
     const { sut } = makeSut();
 
