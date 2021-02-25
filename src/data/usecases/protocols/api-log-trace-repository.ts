@@ -1,5 +1,4 @@
-import { LogReceive } from "@domain/usecases/notification-trace-log";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ApiLogTraceRepo {
-  saveLog(log: LogReceive): Promise<boolean>;
+  saveLog(log: any): Promise<boolean>;
 }
