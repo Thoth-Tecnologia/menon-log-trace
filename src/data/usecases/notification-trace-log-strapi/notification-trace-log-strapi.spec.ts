@@ -1,8 +1,5 @@
 import { NotificationTraceLogStrapi } from "./notification-trace-log-strapi";
-import {
-  LogReceive,
-  ApiLogTraceRepo,
-} from "./notification-trace-log-strapi-protocols";
+import { LogReceive, ApiLogTraceRepo } from "./notification-trace-log-strapi-protocols";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const makeFakeEntryLog = (): any => ({
@@ -15,7 +12,7 @@ const makeFakeEntryLog = (): any => ({
 });
 
 const makeFakeApiLogTraceRepo = (): ApiLogTraceRepo => {
-  class fakeApiLogTraceRepo {
+  class fakeApiLogTraceRepo implements ApiLogTraceRepo {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async saveLog(log: LogReceive): Promise<boolean> {
       return new Promise((resolve) => resolve(true));
@@ -41,7 +38,7 @@ const makeSut = (): SutTypes => {
 };
 
 describe("NotificationTraceLogStrapi", () => {
-  test("should call treatLog with correct values", async () => {
+  test("should call normalizeLogReceive with correct values", async () => {
     const { sut } = makeSut();
 
     const spyNormalizeLogReceive = jest.spyOn(sut, "normalizeLogReceive");
