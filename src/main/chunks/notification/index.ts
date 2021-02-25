@@ -4,8 +4,6 @@ import { PayloadResponse } from "@presentation/controllers/protocols";
 import makeNotificationTraceLogController from "../../factories/notification-trace-log";
 
 export default {
-  setNotificationTraceLogEndpoint: (endpoint: string): void =>
-    ApiHelper.setNotificationTraceLogEndpoint(endpoint),
-  notificationTraceLog: (payload: any): Promise<PayloadResponse> =>
-    makeNotificationTraceLogController().handle(payload),
+  setNotificationTraceLogEndpoint: (endpoint: string): void => ApiHelper.setEndpoint(endpoint),
+  notificationTraceLog: (payload: any): Promise<PayloadResponse> => makeNotificationTraceLogController().handle(payload),
 };
