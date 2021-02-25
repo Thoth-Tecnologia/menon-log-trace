@@ -1,6 +1,2 @@
-import { Log } from "../../entities/log";
-
-type omitId = Omit<Log, "id">;
-type omitCreatedAtAndId = Omit<omitId, "createdAt">;
-
-export type LogReceive = omitCreatedAtAndId;
+import { NotificationLog } from "@domain/entities/notification-log";
+export type LogReceive = NotificationLog

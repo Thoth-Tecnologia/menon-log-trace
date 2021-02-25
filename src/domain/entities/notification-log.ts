@@ -1,12 +1,10 @@
-export interface LogPayload {
+interface LogPayload {
   title: string;
   body: string;
 }
 
-export interface Log {
-  id: number;
+export interface NotificationLog {
   operation: string;
   isErr: boolean;
   payload: LogPayload;
-  createdAt: Date;
 }
