@@ -45,7 +45,7 @@ const makeSut = (): SutTypes => {
 };
 
 describe("Notification Trace Log Controller", () => {
-  it("should returns resultCode 400 if operation property is not provided", async () => {
+  test("should returns resultCode 400 if operation property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
@@ -59,7 +59,7 @@ describe("Notification Trace Log Controller", () => {
     });
   });
 
-  it("should returns resultCode 400 if irErr property is not provided", async () => {
+  test("should returns resultCode 400 if irErr property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
@@ -73,7 +73,7 @@ describe("Notification Trace Log Controller", () => {
     });
   });
 
-  it("should returns resultCode 400 if payload property is not provided", async () => {
+  test("should returns resultCode 400 if payload property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
@@ -87,7 +87,7 @@ describe("Notification Trace Log Controller", () => {
     });
   });
 
-  it("should returns resultCode 400 if payload and isErr property is not provided", async () => {
+  test("should returns resultCode 400 if payload and isErr property is not provided", async () => {
     const { sut } = makeSut();
 
     const testablePayload = {
@@ -100,7 +100,7 @@ describe("Notification Trace Log Controller", () => {
     });
   });
 
-  it("should call notificationTraceLogStub with correct values", () => {
+  test("should call notificationTraceLogStub with correct values", () => {
     const { sut, notificationTraceLogStub } = makeSut();
 
     const traceSpy = jest.spyOn(notificationTraceLogStub, "trace");
