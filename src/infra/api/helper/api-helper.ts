@@ -1,13 +1,13 @@
 export default {
   baseUrl: "",
-  notificationTraceLogEndpoint: "",
+  endpoint: "",
 
   setBaseUrl(url: string): void {
     this.baseUrl = url;
   },
-  setNotificationTraceLogEndpoint(endpoint: string): void {
-    this.notificationTraceLogEndpoint = String(endpoint).length
+  setEndpoint(endpoint: string): void {
+    this.endpoint = String(endpoint).length
       ? `/${endpoint}`
       : "";
-  },
+  }
 };

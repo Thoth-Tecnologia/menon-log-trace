@@ -16,7 +16,7 @@ export class StrapiLogTraceRepository implements ApiLogTraceRepo {
   async saveLog(log: LogReceive): Promise<boolean> {
     try {
       const request = await this.httpClient.post(
-        `${this.apiHelper.baseUrl}${this.apiHelper.notificationTraceLogEndpoint}`,
+        `${this.apiHelper.baseUrl}${this.apiHelper.endpoint}`,
         log
       );
 

@@ -28,7 +28,7 @@ describe("Main Layer Integration", () => {
 
     test("should be set correct notification endpoint", () => {
       menonLogTrace.setNotificationTraceLogEndpoint("posts");
-      expect(ApiHelper.notificationTraceLogEndpoint).toEqual("/posts");
+      expect(ApiHelper.endpoint).toEqual("/posts");
     });
 
     test("should be request fake api", async () => {

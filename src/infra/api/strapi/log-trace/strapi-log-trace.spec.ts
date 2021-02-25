@@ -4,7 +4,7 @@ import { StrapiLogTraceRepository } from "./strapi-log-trace";
 
 const makeFakeApiHelper = (): any => ({
   baseUrl: "any.base.url",
-  notificationTraceLogEndpoint: "/endpoint",
+  endpoint: "/endpoint",
 });
 
 const makeFakeHttpClient = (): any => {
@@ -63,8 +63,8 @@ describe("StrapiLogTraceRepository Repository", () => {
     );
     await sut.saveLog(makeFakeEntryLog());
 
-    const { baseUrl, notificationTraceLogEndpoint } = makeFakeApiHelper();
-    const callUrl = `${baseUrl}${notificationTraceLogEndpoint}`;
+    const { baseUrl, endpoint } = makeFakeApiHelper();
+    const callUrl = `${baseUrl}${endpoint}`;
     expect(spyPostMethod).toHaveBeenCalledWith(callUrl, makeFakeEntryLog());
   });
 
