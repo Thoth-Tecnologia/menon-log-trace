@@ -21,7 +21,7 @@ jobs:
 
       # 
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Test Step - Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -32,6 +32,7 @@ jobs:
 
       # 
 
+      - name: CODECOV Step
       - uses: actions/checkout@master
       - uses: codecov/codecov-action@v1
         with:
