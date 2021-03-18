@@ -3,12 +3,19 @@ import { NotificationTraceLogController } from "@presentation/controllers/notifi
 import { ValidatePayloadHelper } from "@presentation/helpers/validate-payload";
 import { NotificationTraceLogStrapi } from "@data/usecases/notification-trace-log-strapi";
 import { StrapiLogTraceRepository } from "@infra/api/strapi/log-trace";
-import ApiHelper from "@infra/api/helper/api-helper";
+import { makeApiHelper } from "@infra/api/helper/api-helper";
+import { NotificationModule } from "@infra/api/helper/modules";
 import { HttpClient } from "@utils/http-client/http-client";
 
+const makeNotificationModule = () => {
+  return NotificationModule.getInstance();
+}
+
 const makeStrapiLogTraceRepository = (): StrapiLogTraceRepository => {
+  const notificationModule = makeNotificationModule();
+  const apiHelper = makeApiHelper(notificationModule);
   const httpClient = new HttpClient();
-  return new StrapiLogTraceRepository(ApiHelper, httpClient);
+  return new StrapiLogTraceRepository(apiHelper, httpClient);
 };
 
 const makeNotificationTraceLogStrapi = (): NotificationTraceLogStrapi => {

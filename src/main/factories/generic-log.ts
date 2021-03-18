@@ -3,12 +3,19 @@ import { GenericLogController } from "@presentation/controllers/generic-log";
 import { ValidatePayloadHelper } from "@presentation/helpers/validate-payload";
 import { GenericLogStrapi } from "@data/usecases/generic-log-strapi";
 import { StrapiLogTraceRepository } from "@infra/api/strapi/log-trace";
-import ApiHelper from "@infra/api/helper/api-helper";
+import { makeApiHelper } from "@infra/api/helper/api-helper";
+import { GenericModule } from "@infra/api/helper/modules";
 import { HttpClient } from "@utils/http-client/http-client";
 
+const makeGenericModule = () => {
+  return GenericModule.getInstance();
+}
+
 const makeStrapiLogTraceRepository = (): StrapiLogTraceRepository => {
+  const genericModule = makeGenericModule();
+  const apiHelper = makeApiHelper(genericModule);
   const httpClient = new HttpClient();
-  return new StrapiLogTraceRepository(ApiHelper, httpClient);
+  return new StrapiLogTraceRepository(apiHelper, httpClient);
 };
 
 const makeGenericLogStrapi = (): GenericLogStrapi => {
