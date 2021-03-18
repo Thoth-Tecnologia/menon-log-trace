@@ -1,6 +1,6 @@
 import { NotificationLog } from "@domain/entities/notification-log";
 import { GenericLog } from "@domain/entities/generic-log";
-import ApiHelper from "./../infra/api/helper/api-helper";
+import ApiHelper from "@infra/api/helper/api-helper";
 import menonLogTrace from "./compose";
 
 jest.setTimeout(30000);
