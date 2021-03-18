@@ -16,7 +16,7 @@
     "prepare": "npm run build",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "test": "jest --passWithNoTests --noStackTrace --runInBand",
+    "test": "jest --passWithNoTests --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm run test -- --watch -c jest-unit.config.js",
     "test:integration": "npm run test -- --watch -c jest-integration.config.js",
