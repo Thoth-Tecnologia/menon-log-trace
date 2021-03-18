@@ -1,14 +1,14 @@
 import { ApiLogTraceRepo } from "@data/usecases/protocols/api-log-trace-repository";
 import { LogReceive } from "@domain/usecases/notification-trace-log";
 import { HttpClient } from "@utils/http-client";
-import ApiHelper from "../../helper/api-helper";
+import { ApiHelperProtocol } from "../../helper";
 
 export class StrapiLogTraceRepository implements ApiLogTraceRepo {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly httpClient: HttpClient;
-  private readonly apiHelper: typeof ApiHelper;
+  private readonly apiHelper: ApiHelperProtocol;
 
-  constructor(apiHelper: typeof ApiHelper, httpClient: HttpClient) {
+  constructor(apiHelper: ApiHelperProtocol, httpClient: HttpClient) {
     this.apiHelper = apiHelper;
     this.httpClient = httpClient;
   }
