@@ -15,13 +15,13 @@
     "build": "npm run clean && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "prepare": "npm run build",
     "lint": "eslint ./src --ext .ts",
-    "lint:fix": "npm run lint --fix",
+    "lint:fix": "npm run lint -- --fix",
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
-    "test:unit": "npm run test --watch -c jest-unit.config.js",
-    "test:integration": "npm run test --watch -c jest-integration.config.js",
-    "test:staged": "npm run test --findRelatedTests",
-    "test:ci": "npm run test --coverage"
+    "test:unit": "npm run test -- --watch -c jest-unit.config.js",
+    "test:integration": "npm run test -- --watch -c jest-integration.config.js",
+    "test:staged": "npm run test -- --findRelatedTests",
+    "test:ci": "npm run test -- --coverage"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.13",
