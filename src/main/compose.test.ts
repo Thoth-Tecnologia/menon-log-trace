@@ -1,14 +1,12 @@
 import { NotificationLog } from "@domain/entities/notification-log";
 import { GenericLog } from "@domain/entities/generic-log";
 import { ApiHelper } from "@infra/api/helper";
-import { GenericModule, NotificationModule } from "@infra/api/helper/modules";
+import { genericModule, notificationModule } from "@infra/api/helper/modules";
 import menonLogTrace from "./compose";
 
 jest.setTimeout(30000);
 
 const apiHelper = ApiHelper.getInstance();
-const genericModule = GenericModule.getInstance();
-const notificationModule = NotificationModule.getInstance();
 
 describe("Main Layer Integration", () => {
   const baseUrl = "https://jsonplaceholder.typicode.com";
@@ -34,7 +32,7 @@ describe("Main Layer Integration", () => {
 
     test("should be set correct endpoint", () => {
       menonLogTrace.setNotificationTraceLogEndpoint("posts");
-      expect(notificationModule.endpoint).toEqual("/posts");
+      expect(notificationModule().endpoint).toEqual("/posts");
     });
 
     test("should be request fake api", async () => {
@@ -61,7 +59,7 @@ describe("Main Layer Integration", () => {
 
     test("should be set correct endpoint", () => {
       menonLogTrace.setGenericLogEndpoint("posts");
-      expect(genericModule.endpoint).toEqual("/posts");
+      expect(genericModule().endpoint).toEqual("/posts");
     });
 
     test("should be request fake api", async () => {

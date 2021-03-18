@@ -4,16 +4,11 @@ import { ValidatePayloadHelper } from "@presentation/helpers/validate-payload";
 import { GenericLogStrapi } from "@data/usecases/generic-log-strapi";
 import { StrapiLogTraceRepository } from "@infra/api/strapi/log-trace";
 import { makeApiHelper } from "@infra/api/helper/api-helper";
-import { GenericModule } from "@infra/api/helper/modules";
+import { genericModule } from "@infra/api/helper/modules";
 import { HttpClient } from "@utils/http-client/http-client";
 
-const makeGenericModule = () => {
-  return GenericModule.getInstance();
-}
-
 const makeStrapiLogTraceRepository = (): StrapiLogTraceRepository => {
-  const genericModule = makeGenericModule();
-  const apiHelper = makeApiHelper(genericModule);
+  const apiHelper = makeApiHelper(genericModule());
   const httpClient = new HttpClient();
   return new StrapiLogTraceRepository(apiHelper, httpClient);
 };

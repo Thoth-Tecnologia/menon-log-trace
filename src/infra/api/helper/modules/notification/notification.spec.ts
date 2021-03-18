@@ -1,7 +1,7 @@
-import { NotificationModule } from "./notification";
+import { notificationModule } from "./notification";
 
 const makeSut = () => {
-  const sut = new NotificationModule();
+  const sut = notificationModule();
 
   return {
     sut

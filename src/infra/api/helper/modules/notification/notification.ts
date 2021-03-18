@@ -1,6 +1,6 @@
 import { ModuleProtocol } from "@infra/api/helper/modules/protocols"
 
-export class NotificationModule implements ModuleProtocol {
+class NotificationModule implements ModuleProtocol {
   private static instance: NotificationModule;
   public endpoint: string;
 
@@ -16,4 +16,8 @@ export class NotificationModule implements ModuleProtocol {
       ? `/${endpoint}`
       : "";
   }
+}
+
+export const notificationModule = (): NotificationModule => {
+  return NotificationModule.getInstance();
 }

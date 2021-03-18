@@ -1,7 +1,7 @@
-import { GenericModule } from "./generic";
+import { genericModule } from "./generic";
 
 const makeSut = () => {
-  const sut = GenericModule.getInstance();
+  const sut = genericModule();
 
   return {
     sut

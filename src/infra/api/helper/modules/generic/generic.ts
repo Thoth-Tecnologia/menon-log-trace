@@ -1,6 +1,6 @@
 import { ModuleProtocol } from "@infra/api/helper/modules/protocols"
 
-export class GenericModule implements ModuleProtocol {
+class GenericModule implements ModuleProtocol {
   private static instance: GenericModule;
   public endpoint: string;
 
@@ -16,4 +16,8 @@ export class GenericModule implements ModuleProtocol {
       ? `/${endpoint}`
       : "";
   }
+}
+
+export const genericModule = (): GenericModule => {
+  return GenericModule.getInstance();
 }
