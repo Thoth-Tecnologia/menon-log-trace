@@ -1,14 +1,14 @@
 {
   "name": "menon-log-trace",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "description": "Log trace client 💫",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
   "author": "pedromoraisf <pedro.morais1997@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/pedromoraisf/menon-log-trace#readme",
+  "homepage": "https://github.com/thoth-tecnologia/menon-log-trace#readme",
   "bugs": {
-    "url": "https://github.com/pedromoraisf/menon-log-trace/issues"
+    "url": "https://github.com/thoth-tecnologia/menon-log-trace/issues"
   },
   "scripts": {
     "clean": "rm -rf ./dist",
