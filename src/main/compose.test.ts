@@ -71,5 +71,23 @@ describe("Main Layer Integration", () => {
         message: "Action has been succeded",
       });
     });
+
+    describe("should be mantains uncorrupt endpoint in race conditions", () => {
+      afterAll(() => {
+        menonLogTrace.setGenericLogEndpoint("");
+      });
+
+      it("new syntax test", async () => {
+        menonLogTrace.setGenericLogEndpoint("");
+        const defaultLog = makeGenericDefaultLog();
+        const testable = await menonLogTrace.genericLog(defaultLog, "posts");
+
+        expect(genericModule().endpoint).toEqual("/posts");
+        expect(testable).toEqual({
+          resultCode: 200,
+          message: "Action has been succeded",
+        });
+      })
+    })
   });
 });
